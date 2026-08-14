@@ -231,8 +231,8 @@
 
   <footer>
     <div class="legend">
-      <span><i class="sw" style="background:var(--on2bg)"></i> 2SC ON</span>
-      <span><i class="sw" style="background:var(--on1bg)"></i> 1SC ON</span>
+      <span><i class="sw" style="background:var(--on2bg)"></i> 2× SC ON</span>
+      <span><i class="sw" style="background:var(--on1bg)"></i> 1× SC ON</span>
       <span><i class="sw" style="background:var(--offbg)"></i> SC OFF</span>
       <span><i class="sw" style="background:var(--d1)"></i> Mon-Thu / Mon-Fri</span>
       <span><i class="sw" style="background:var(--d2)"></i> Fri-Sun / Sat-Sun</span>
@@ -249,10 +249,10 @@
     ["2.4","1SC ON","400g"],["2.6","1SC ON","300g"],["2.8","1SC ON","300g"],["3.0","OFF SC","300g"]
   ];
   const mmorn = [
-    ["0.0","2SC ON","2SC ON, 4 bars"],["0.2","2SC ON","2SC ON, 4 bars"],["0.4","2SC ON","2SC ON, 4 bars"],
-    ["0.6","2SC ON","2SC ON, 4 bars"],["0.8","2SC ON","2SC ON, 4 bars"],["1.0","1SC ON","2SC ON, 4 bars"],
-    ["1.2","1SC ON","2SC ON, 4 bars"],["1.4","1SC ON","2SC ON, 4 bars"],["1.6","1SC ON","2SC ON, 4 bars"],
-    ["1.8","1SC ON","2SC ON, 4 bars"],["2.0","1SC ON","2SC ON, 4 bars"],["2.2","All SC OFF","OFF SC"],
+    ["0.0","2SC ON","2SC ON"],["0.2","2SC ON","2SC ON"],["0.4","2SC ON","2SC ON"],
+    ["0.6","2SC ON","2SC ON"],["0.8","2SC ON","2SC ON"],["1.0","1SC ON","2SC ON"],
+    ["1.2","1SC ON","2SC ON"],["1.4","1SC ON","2SC ON"],["1.6","1SC ON","2SC ON"],
+    ["1.8","1SC ON","2SC ON"],["2.0","1SC ON","2SC ON"],["2.2","All SC OFF","OFF SC"],
     ["2.4","All SC OFF","OFF SC"],["2.6","All SC OFF","OFF SC"],["2.8","All SC OFF","OFF SC"],["3.0","All SC OFF","OFF SC"]
   ];
   const smallafter = [
@@ -265,8 +265,8 @@
   function fmt(v){
     if(/^\d.*(kg|g)$/.test(v)) return `<span class="dose">${v}</span>`;
     if(/off/i.test(v)) return '<span class="pill off">SC OFF</span>';
-    if(/2\s*sc/i.test(v)) return /bar/i.test(v) ? '<span class="pill on2">2SC &#183; 4 bars</span>' : '<span class="pill on2">2SC ON</span>';
-    if(/1\s*sc/i.test(v)) return '<span class="pill on1">1SC ON</span>';
+    if(/2\s*sc/i.test(v)) return '<span class="pill on2">2× SC ON</span>';
+    if(/1\s*sc/i.test(v)) return '<span class="pill on1">1× SC ON</span>';
     return v;
   }
   document.getElementById('mafter').innerHTML = mafter.map(r=>
