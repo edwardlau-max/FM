@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forum Mall (FM) Pool Dosing Guide (Rev 1.2)</title>
+<title>Forum Mall (FM) Pool Dosing Guide (Rev 1.5)</title>
 <style>
   :root{
     --ink:#1a2230; --muted:#5b6675; --line:#d3d9e2; --bg:#f5f7fa;
@@ -126,7 +126,7 @@
   <header>
     <h1>Forum Mall (FM) — Chlorine &amp; pH Dosing Guide</h1>
     <p class="sub">Water test &#8594; find your FC reading &#8594; read the column for today. SC = Salt Chlorinator. This centre has a MAIN pool and a SMALL pool.</p>
-    <span class="rev">REV 1.2</span>
+    <span class="rev">REV 1.5</span>
   </header>
 
   <div class="how">
@@ -168,7 +168,7 @@
     <div class="grids">
       <div class="wrap">
         <table>
-          <thead><tr><th class="fc">FC</th><th class="c1">Mon &#8211; Fri</th><th class="c2">Sat &#8211; Sun</th></tr></thead>
+          <thead><tr><th class="fc">FC</th><th class="c1">Mon &#8211; Sun</th></tr></thead>
           <tbody id="mmorn"></tbody>
         </table>
       </div>
@@ -237,29 +237,29 @@
       <span><i class="sw" style="background:var(--d1)"></i> Mon-Thu / Mon-Fri</span>
       <span><i class="sw" style="background:var(--d2)"></i> Fri-Sun / Sat-Sun</span>
     </div>
-    Source: Forum Mall / FM (Rev 1.2), "Dosing w Twice Test" tab. pH below 7.5 = no dosing. Main Mon-Thurs FC 2.8 follows the 1.8-2.6 band (1SC ON). Small pool defined up to FC 2.4. Confirm values against your master sheet before printing.
+    Source: Forum Mall / FM (Rev 1.5), "Dosing w Twice Test" tab. pH below 7.5 = no dosing. Morning (Mon&#8211;Sun, same all week): 2SC ON to FC 0.8, 1SC ON at FC 1.0–1.8, SC OFF from FC 2.0. Main Mon-Thurs after-class: 2SC ON at FC 1.0–1.8, 1SC ON at FC 2.0–2.8. Small pool defined up to FC 2.4. Confirm values against your master sheet before printing.
   </footer>
 </div>
 
 <script>
   const mafter = [
     ["0.0","1kg","1kg"],["0.2","1kg","1kg"],["0.4","800g","1kg"],["0.6","800g","1kg"],
-    ["0.8","800g","1kg"],["1.0","2SC ON","900g"],["1.2","2SC ON","900g"],["1.4","2SC ON","900g"],
-    ["1.6","2SC ON","600g"],["1.8","1SC ON","600g"],["2.0","1SC ON","600g"],["2.2","1SC ON","400g"],
-    ["2.4","1SC ON","400g"],["2.6","1SC ON","300g"],["2.8","1SC ON","300g"],["3.0","OFF SC","300g"]
+    ["0.8","800g","1kg"],["1.0","2SC ON","700g"],["1.2","2SC ON","700g"],["1.4","2SC ON","700g"],
+    ["1.6","2SC ON","600g"],["1.8","2SC ON","600g"],["2.0","1SC ON","600g"],["2.2","1SC ON","400g"],
+    ["2.4","1SC ON","400g"],["2.6","1SC ON","200g"],["2.8","1SC ON","200g"],["3.0","OFF SC","200g"]
   ];
   const mmorn = [
-    ["0.0","2SC ON","2SC ON"],["0.2","2SC ON","2SC ON"],["0.4","2SC ON","2SC ON"],
-    ["0.6","2SC ON","2SC ON"],["0.8","2SC ON","2SC ON"],["1.0","1SC ON","2SC ON"],
-    ["1.2","1SC ON","2SC ON"],["1.4","1SC ON","2SC ON"],["1.6","1SC ON","2SC ON"],
-    ["1.8","1SC ON","2SC ON"],["2.0","1SC ON","2SC ON"],["2.2","All SC OFF","OFF SC"],
-    ["2.4","All SC OFF","OFF SC"],["2.6","All SC OFF","OFF SC"],["2.8","All SC OFF","OFF SC"],["3.0","All SC OFF","OFF SC"]
+    ["0.0","2SC ON"],["0.2","2SC ON"],["0.4","2SC ON"],
+    ["0.6","2SC ON"],["0.8","2SC ON"],["1.0","1SC ON"],
+    ["1.2","1SC ON"],["1.4","1SC ON"],["1.6","1SC ON"],
+    ["1.8","1SC ON"],["2.0","OFF SC"],["2.2","OFF SC"],
+    ["2.4","OFF SC"],["2.6","OFF SC"],["2.8","OFF SC"],["3.0","OFF SC"]
   ];
   const smallafter = [
     ["0.0","300g"],["0.2","300g"],["0.4","300g"],["0.6","300g"],["0.8","300g"],["1.0","300g"],
     ["1.2","200g"],["1.4","200g"],["1.6","200g"],["1.8","200g"],["2.0","200g"],["2.2","100g"],["2.4","100g"]
   ];
-  const mph = [["7.5","1kg"],["7.8","2kg"],["8.2","3kg"]];
+  const mph = [["7.5","500g"],["7.8","1kg"],["8.2","2kg"]];
   const sph = [["7.5","200g"],["7.8","300g"],["8.2","300g"]];
 
   function fmt(v){
@@ -272,7 +272,7 @@
   document.getElementById('mafter').innerHTML = mafter.map(r=>
     `<tr><td class="fc">${r[0]}</td><td class="c1">${fmt(r[1])}</td><td class="c2">${fmt(r[2])}</td></tr>`).join('');
   document.getElementById('mmorn').innerHTML = mmorn.map(r=>
-    `<tr><td class="fc">${r[0]}</td><td class="c1">${fmt(r[1])}</td><td class="c2">${fmt(r[2])}</td></tr>`).join('');
+    `<tr><td class="fc">${r[0]}</td><td class="c1">${fmt(r[1])}</td></tr>`).join('');
   document.getElementById('smallafter').innerHTML = smallafter.map(r=>
     `<tr><td class="fc">${r[0]}</td><td class="c1">${fmt(r[1])}</td></tr>`).join('');
   document.getElementById('mph').innerHTML = mph.map(r=>`<tr><td class="k">${r[0]}</td><td class="dose">${r[1]}</td></tr>`).join('');
