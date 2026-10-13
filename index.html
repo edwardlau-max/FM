@@ -3,16 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forum Mall (FM) Pool Dosing Guide (Rev 1.5)</title>
+<title>Forum Mall (FM) Pool Dosing Guide (Rev 1.3)</title>
 <style>
   :root{
     --ink:#1a2230; --muted:#5b6675; --line:#d3d9e2; --bg:#f5f7fa;
     --fc-bg:#22303f; --fc-ink:#ffffff;
-    --d1:#eef4ff; --d1hd:#2b62b8;   /* Mon-Thurs / Mon-Fri  (blue) */
-    --d2:#fff3e6; --d2hd:#c8781a;   /* Fri-Sun / Sat-Sun    (orange) */
-    --on2bg:#cdedd9; --on2:#12703f;  /* 2x SC ON */
-    --on1bg:#e4f5ea; --on1:#2b8a5b;  /* 1x SC ON */
-    --offbg:#fbe1da; --off:#b3341f;  /* All SC OFF */
+    --d1:#eef4ff; --d1hd:#2b62b8;   /* Mon-Thurs (blue) */
+    --d2:#fff3e6; --d2hd:#c8781a;   /* Fri-Sun (orange) */
+    --on2bg:#c9ecd7; --on2:#0d6b3c;  /* 2x SC ON */
+    --sp:#e8f6f6; --sphd:#1d7f86;   /* small pool (teal) */
+    --onbg:#e2f4e9; --on:#1a7f4b;   /* SC ON */
+    --offbg:#fbe1da; --off:#b3341f;  /* SC OFF */
     --ph:#fdeef4; --phhd:#b23a76;
     --warn:#b23b17; --warnbg:#fdeee7;
     --lv1bg:#e2f4e9; --lv1:#1a7f4b;
@@ -42,16 +43,17 @@
   section{padding:20px 26px 8px;}
   .band{display:flex;align-items:center;gap:10px;margin:0 0 12px;}
   .tag{font-size:12px;font-weight:800;letter-spacing:.6px;color:#fff;padding:5px 12px;border-radius:8px;text-transform:uppercase;}
-  .tag.m{background:var(--d1hd);}
   .tag.a{background:#12855a;}
+  .tag.m{background:var(--d1hd);}
   .tag.w{background:var(--warn);}
   .band h2{margin:0;font-size:17px;}
   .band .note{margin-left:auto;font-size:12.5px;color:var(--muted);font-weight:600;}
 
   .grids{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;}
   table{border-collapse:collapse;width:100%;font-size:15px;}
-  .wrap{flex:1;min-width:340px;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  .wrap{flex:1;min-width:300px;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
   .wrap.ph{flex:none;width:220px;}
+  .wrap.narrow{flex:none;width:320px;}
   th,td{padding:9px 12px;text-align:center;border-bottom:1px solid #e7ebf1;}
   thead th{font-size:12.5px;font-weight:800;letter-spacing:.3px;padding-top:11px;padding-bottom:11px;}
   tbody tr:last-child td{border-bottom:none;}
@@ -66,15 +68,18 @@
   tbody tr:nth-child(even) td.c2{background:#ffe9d4;}
   td.dose{font-weight:800;font-size:15.5px;}
 
-  .pill{display:inline-block;min-width:78px;padding:3px 9px;border-radius:6px;font-weight:800;font-size:12.5px;letter-spacing:.2px;}
-  .on2{background:var(--on2bg);color:var(--on2);}
-  .on1{background:var(--on1bg);color:var(--on1);}
+  .pill{display:inline-block;min-width:70px;padding:3px 9px;border-radius:6px;font-weight:800;font-size:12.5px;letter-spacing:.2px;}
+  .on{background:var(--onbg);color:var(--on);}
   .off{background:var(--offbg);color:var(--off);}
+  .on2{background:var(--on2bg);color:var(--on2);}
+  .sp thead th{background:var(--sphd);color:#fff;}
+  .sp td.k{font-weight:800;background:#d6efef;}
+  .tag.s{background:var(--sphd);}
+  .wrap.half{flex:1;min-width:240px;}
 
   .ph thead th{background:var(--phhd);color:#fff;}
   .ph td.k{font-weight:800;background:#fbe7f0;}
 
-  /* poo procedure */
   .proc{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;}
   .proc .steps{flex:1;min-width:320px;background:var(--warnbg);border:1px solid #f2d3c6;border-radius:10px;padding:6px 6px 6px 4px;}
   .proc ol{margin:8px 14px 8px 34px;padding:0;}
@@ -108,7 +113,7 @@
     .band h2{font-size:15px;}
     .band .note{margin-left:0;flex-basis:100%;}
     .grids,.proc{gap:14px;}
-    .wrap,.wrap.ph,.proc .steps,.lv{min-width:0;width:100%;flex:1 1 100%;}
+    .wrap,.wrap.ph,.wrap.narrow,.proc .steps,.lv{min-width:0;width:100%;flex:1 1 100%;}
     th,td{padding:8px 6px;font-size:13.5px;}
     thead th{font-size:11.5px;}
     th.fc,td.fc{width:46px;font-size:14px;}
@@ -125,74 +130,74 @@
 <div class="sheet">
   <header>
     <h1>Forum Mall (FM) — Chlorine &amp; pH Dosing Guide</h1>
-    <p class="sub">Water test &#8594; find your FC reading &#8594; read the column for today. SC = Salt Chlorinator. This centre has a MAIN pool and a SMALL pool.</p>
-    <span class="rev">REV 1.5</span>
+    <p class="sub">Water test &#8594; find your FC reading &#8594; read the column for today. SC = Salt Chlorinator.</p>
+    <span class="rev">REV 1.3</span>
   </header>
 
   <div class="how">
-    <div class="step"><div class="num">1</div><div><b>Which pool &amp; time</b><span>Main pool (morning + after-class) or small pool. Use the matching section below.</span></div></div>
+    <div class="step"><div class="num">1</div><div><b>Check the time</b><span>Morning test, or after-class 5pm test — use the matching section.</span></div></div>
     <div class="step"><div class="num">2</div><div><b>Find the FC row</b><span>Match your measured FC (dark left column).</span></div></div>
-    <div class="step"><div class="num">3</div><div><b>Read today's column</b><span>A dose (e.g. 800g) = add chlorine. A green pill = set the chlorinator(s) instead.</span></div></div>
+    <div class="step"><div class="num">3</div><div><b>Read today's column</b><span>Follow the row across to the coloured column for today.</span></div></div>
   </div>
 
-  <!-- MAIN AFTER CLASS -->
+  <!-- AFTER CLASS: MAIN POOL -->
   <section>
     <div class="band">
-      <span class="tag a">Main &#183; After Class</span>
-      <h2>5pm Water Test — Chlorine Dose</h2>
-      <span class="note">Dose = chlorinator OFF &#183; green pill = set chlorinator on instead</span>
+      <span class="tag a">After Class</span>
+      <h2>Main Pool — 5pm Water Test</h2>
+      <span class="note">All CL dosing = Salt Chlorinator OFF</span>
     </div>
     <div class="grids">
       <div class="wrap">
         <table>
-          <thead><tr><th class="fc">FC</th><th class="c1">Mon &#8211; Thurs</th><th class="c2">Fri &#8211; Sun</th></tr></thead>
-          <tbody id="mafter"></tbody>
+          <thead><tr><th class="fc">FC</th><th class="c1">Mon – Thurs</th><th class="c2">Fri – Sun</th></tr></thead>
+          <tbody id="after"></tbody>
         </table>
       </div>
       <div class="wrap ph">
         <table class="ph">
           <thead><tr><th>pH Reading</th><th>pH Minus</th></tr></thead>
-          <tbody id="mph"></tbody>
+          <tbody id="ph"></tbody>
         </table>
       </div>
     </div>
   </section>
 
-  <!-- MAIN MORNING -->
+  <!-- AFTER CLASS: SMALL POOL -->
   <section>
     <div class="band">
-      <span class="tag m">Main &#183; Morning</span>
+      <span class="tag s">Small Pool</span>
+      <h2>Small Pool — Daily After Class</h2>
+      <span class="note">Every day</span>
+    </div>
+    <div class="grids">
+      <div class="wrap half">
+        <table class="sp">
+          <thead><tr><th>FC Reading</th><th>Chlorine (CL)</th></tr></thead>
+          <tbody id="spfc"></tbody>
+        </table>
+      </div>
+      <div class="wrap half">
+        <table class="sp">
+          <thead><tr><th>pH Reading</th><th>pH Minus</th></tr></thead>
+          <tbody id="spph"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- MORNING -->
+  <section>
+    <div class="band">
+      <span class="tag m">Morning</span>
       <h2>Morning Water Test — Salt Chlorinator</h2>
-      <span class="note">9:30am / 9am &#183; decision only</span>
+      <span class="note">Mon–Fri 9:30am / 9am · Sat–Sun 9am · decision only, no CL</span>
     </div>
     <div class="grids">
-      <div class="wrap">
+      <div class="wrap narrow">
         <table>
-          <thead><tr><th class="fc">FC</th><th class="c1">Mon &#8211; Sun</th></tr></thead>
-          <tbody id="mmorn"></tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- SMALL POOL -->
-  <section>
-    <div class="band">
-      <span class="tag a" style="background:#6b46c1">Small Pool &#183; After Class</span>
-      <h2>Small Pool — Chlorine Dose</h2>
-      <span class="note">Daily, after class &#183; chlorinator OFF</span>
-    </div>
-    <div class="grids">
-      <div class="wrap ph" style="width:260px">
-        <table>
-          <thead><tr><th class="fc">FC</th><th class="c1">Small pool (CL)</th></tr></thead>
-          <tbody id="smallafter"></tbody>
-        </table>
-      </div>
-      <div class="wrap ph">
-        <table class="ph">
-          <thead><tr><th>pH Reading</th><th>pH Minus</th></tr></thead>
-          <tbody id="sph"></tbody>
+          <thead><tr><th class="fc">FC</th><th class="c1">Every day</th></tr></thead>
+          <tbody id="morn"></tbody>
         </table>
       </div>
     </div>
@@ -232,51 +237,49 @@
   <footer>
     <div class="legend">
       <span><i class="sw" style="background:var(--on2bg)"></i> 2× SC ON</span>
-      <span><i class="sw" style="background:var(--on1bg)"></i> 1× SC ON</span>
+      <span><i class="sw" style="background:var(--onbg)"></i> 1× SC ON</span>
       <span><i class="sw" style="background:var(--offbg)"></i> SC OFF</span>
-      <span><i class="sw" style="background:var(--d1)"></i> Mon-Thu / Mon-Fri</span>
-      <span><i class="sw" style="background:var(--d2)"></i> Fri-Sun / Sat-Sun</span>
+      <span><i class="sw" style="background:var(--d1)"></i> Mon–Thurs</span>
+      <span><i class="sw" style="background:var(--d2)"></i> Fri–Sun</span>
     </div>
-    Source: Forum Mall / FM (Rev 1.5), "Dosing w Twice Test" tab. pH below 7.5 = no dosing. Morning (Mon&#8211;Sun, same all week): 2SC ON to FC 0.8, 1SC ON at FC 1.0–1.8, SC OFF from FC 2.0. Main Mon-Thurs after-class: 2SC ON at FC 1.0–1.8, 1SC ON at FC 2.0–2.8. Small pool defined up to FC 2.4. Confirm values against your master sheet before printing.
+    Source: Forum Mall (Rev 1.3), "Dosing w Twice Test" tab. After-class CL dosing = Salt Chlorinator OFF. Confirm values against your master sheet before printing.
   </footer>
 </div>
 
 <script>
-  const mafter = [
-    ["0.0","1kg","1kg"],["0.2","1kg","1kg"],["0.4","800g","1kg"],["0.6","800g","1kg"],
-    ["0.8","800g","1kg"],["1.0","2SC ON","700g"],["1.2","2SC ON","700g"],["1.4","2SC ON","700g"],
-    ["1.6","2SC ON","600g"],["1.8","2SC ON","600g"],["2.0","1SC ON","600g"],["2.2","1SC ON","400g"],
-    ["2.4","1SC ON","400g"],["2.6","1SC ON","200g"],["2.8","1SC ON","200g"],["3.0","OFF SC","200g"]
+  const after = [
+    ["0","1kg","1kg"],["0.2","1kg","1kg"],["0.4","800g","1kg"],
+    ["0.6","800g","1kg"],["0.8","800g","1kg"],["1.0","2SC ON","700g"],
+    ["1.2","2SC ON","700g"],["1.4","2SC ON","700g"],["1.6","2SC ON","600g"],
+    ["1.8","2SC ON","600g"],["2.0","1SC ON","600g"],["2.2","1SC ON","400g"],
+    ["2.4","1SC ON","400g"],["2.6","1SC ON","200g"],["2.8","1SC ON","200g"],
+    ["3.0","SC OFF","200g"]
   ];
-  const mmorn = [
-    ["0.0","2SC ON"],["0.2","2SC ON"],["0.4","2SC ON"],
-    ["0.6","2SC ON"],["0.8","2SC ON"],["1.0","1SC ON"],
-    ["1.2","1SC ON"],["1.4","1SC ON"],["1.6","1SC ON"],
-    ["1.8","1SC ON"],["2.0","OFF SC"],["2.2","OFF SC"],
-    ["2.4","OFF SC"],["2.6","OFF SC"],["2.8","OFF SC"],["3.0","OFF SC"]
+  const morn = [
+    ["0","2SC ON"],["0.2","2SC ON"],["0.4","2SC ON"],["0.6","2SC ON"],
+    ["0.8","2SC ON"],["1.0","1SC ON"],["1.2","1SC ON"],["1.4","1SC ON"],
+    ["1.6","1SC ON"],["1.8","1SC ON"],["2.0","SC OFF"],["2.2","SC OFF"],
+    ["2.4","SC OFF"],["2.6","SC OFF"],["2.8","SC OFF"],["3.0","SC OFF"]
   ];
-  const smallafter = [
-    ["0.0","300g"],["0.2","300g"],["0.4","300g"],["0.6","300g"],["0.8","300g"],["1.0","300g"],
-    ["1.2","200g"],["1.4","200g"],["1.6","200g"],["1.8","200g"],["2.0","200g"],["2.2","100g"],["2.4","100g"]
-  ];
-  const mph = [["7.5","500g"],["7.8","1kg"],["8.2","2kg"]];
-  const sph = [["7.5","200g"],["7.8","300g"],["8.2","300g"]];
+  const ph = [["7.5","800g"],["7.8","1.5kg"],["8.2","2kg"]];
+  const spfc = [["&le; 1.0","300g"],["1.2 – 2.0","200g"],["2.2 – 2.4","100g"]];
+  const spph = [["7.5","200g"],["7.8","300g"],["8.2","300g"]];
 
   function fmt(v){
     if(/^\d.*(kg|g)$/.test(v)) return `<span class="dose">${v}</span>`;
     if(/off/i.test(v)) return '<span class="pill off">SC OFF</span>';
-    if(/2\s*sc/i.test(v)) return '<span class="pill on2">2× SC ON</span>';
-    if(/1\s*sc/i.test(v)) return '<span class="pill on1">1× SC ON</span>';
+    const m = v.match(/^(\d)SC ON/i);
+    if(m) return `<span class="pill ${m[1]==='2'?'on2':'on'}">${m[1]}&times; SC ON</span>`;
     return v;
   }
-  document.getElementById('mafter').innerHTML = mafter.map(r=>
+  document.getElementById('after').innerHTML = after.map(r=>
     `<tr><td class="fc">${r[0]}</td><td class="c1">${fmt(r[1])}</td><td class="c2">${fmt(r[2])}</td></tr>`).join('');
-  document.getElementById('mmorn').innerHTML = mmorn.map(r=>
+  document.getElementById('morn').innerHTML = morn.map(r=>
     `<tr><td class="fc">${r[0]}</td><td class="c1">${fmt(r[1])}</td></tr>`).join('');
-  document.getElementById('smallafter').innerHTML = smallafter.map(r=>
-    `<tr><td class="fc">${r[0]}</td><td class="c1">${fmt(r[1])}</td></tr>`).join('');
-  document.getElementById('mph').innerHTML = mph.map(r=>`<tr><td class="k">${r[0]}</td><td class="dose">${r[1]}</td></tr>`).join('');
-  document.getElementById('sph').innerHTML = sph.map(r=>`<tr><td class="k">${r[0]}</td><td class="dose">${r[1]}</td></tr>`).join('');
+  const kv = (rows)=>rows.map(r=>`<tr><td class="k">${r[0]}</td><td class="dose">${r[1]}</td></tr>`).join('');
+  document.getElementById('ph').innerHTML = kv(ph);
+  document.getElementById('spfc').innerHTML = kv(spfc);
+  document.getElementById('spph').innerHTML = kv(spph);
 </script>
 </body>
 </html>
